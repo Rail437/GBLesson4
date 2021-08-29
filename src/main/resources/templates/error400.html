@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}"/>-->
+</head>
+<body>
+<script th:src="@{/webjars/bootstrap/4.6.0-1/js/bootstrap.bundle.min.js}"></script>
+<tr>
+    <td>
+        <form action="#" th:action="@{/}" method="post" th:object="${product}">
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Coast</label>
+                <input type="text" class="form-control" id="coast" name="coast"/>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn-primary">Enter</button>
+            </div>
+        </form>
+        <form action="#" th:action="@{/products}" method="post" th:object="${product}">
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description"/>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn-primary">Add to cart</button>
+            </div>
+        </form>
+    </td>
+    <td>
+        <div>
+            <h1>Ошибка ввода. Введите значения продуктов в правильном формате.</h1>
+        </div>
+    </td>
+</tr>
+</body>
+</html>
