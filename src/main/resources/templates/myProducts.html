@@ -15,7 +15,7 @@
         <form action="#" th:action="@{/}" method="post" th:object="${product}">
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description"/>
+                <input type="text" class="form-control" id="productCode" name="productCode"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">Coast</label>
@@ -28,7 +28,7 @@
         <form action="#" th:action="@{/products}" method="post" th:object="${product}">
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description"/>
+                <input type="text" class="form-control" id="productcode" name="productcode"/>
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn-primary">Add to cart</button>
@@ -42,11 +42,13 @@
                 <tr>
                     <th>ID</th>
                     <th>Description</th>
+                    <th>Company</th>
                     <th>Coast</th>
                 </tr>
                 <tr th:each="product : ${products}">
                     <td th:text="${product.id}">...</td>
                     <td th:text="${product.description}">...</td>
+                    <td th:text="${product.company}">...</td>
                     <td th:text="${product.coast}">...</td>
                 </tr>
             </table>
