@@ -15,7 +15,7 @@
         <form action="#" th:action="@{/}" method="post" th:object="${product}">
             <div class="mb-3">
                 <label class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description"/>
+                <input type="text" class="form-control" id="productCode" name="productCode"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">Coast</label>
@@ -25,13 +25,21 @@
                 <button type="submit" class="btn-primary">Enter</button>
             </div>
         </form>
-        <form action="#" th:action="@{/products}" method="post" th:object="${product}">
+        <form action="#" th:action="@{/}" method="post" th:object="${myString}">
             <div class="mb-3">
                 <label class="form-label">Description</label>
                 <input type="text" class="form-control" id="description" name="description"/>
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn-primary">Add to cart</button>
+                <label class="form-label">Company</label>
+                <input type="text" class="form-control" id="company" name="company"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Coast</label>
+                <input type="text" class="form-control" id="coast" name="coast"/>
+            </div>
+            <div class="mb-3">
+                <button type="submit" name="filter" class="btn-primary">Filter</button>
             </div>
         </form>
     </td>
@@ -42,12 +50,14 @@
                 <tr>
                     <th>ID</th>
                     <th>Description</th>
+                    <th>Company</th>
                     <th>Coast</th>
                 </tr>
-                <tr th:each="product : ${products}">
-                    <td th:text="${product.id}">...</td>
-                    <td th:text="${product.description}">...</td>
-                    <td th:text="${product.coast}">...</td>
+                <tr th:each="prod : ${products}">
+                    <td th:text="${prod.id}">...</td>
+                    <td th:text="${prod.description}">...</td>
+                    <td th:text="${prod.company}">...</td>
+                    <td th:text="${prod.coast}">...</td>
                 </tr>
             </table>
         </div>
