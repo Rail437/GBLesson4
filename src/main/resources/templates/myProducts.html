@@ -62,6 +62,31 @@
             </table>
         </div>
     </td>
+    <form action="#" th:action="@{/}" method="post" th:object="${myString}">
+        <div class="mb-3">
+            <label class="form-label">Find Name</label>
+            <input type="text" class="form-control" id="description" name="description"/>
+        </div>
+        <div class="mb-3">
+            <button type="submit" name="findPersonByName" class="btn-primary">Find Person</button>
+        </div>
+    <td>
+        <div>
+            <h1>Available Persons</h1>
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Products</th>
+                </tr>
+                <tr th:each="person : ${persons}">
+                    <td th:text="${person.id}">...</td>
+                    <td th:text="${person.name}">...</td>
+                    <td th:text="${person.products}">...</td>
+                </tr>
+            </table>
+        </div>
+    </td>
 </tr>
 </body>
 </html>

@@ -1,5 +1,19 @@
 BEGIN ;
 
+DROP TABLE IF EXISTS Persons;
+CREATE TABLE Persons
+(
+    id         bigserial PRIMARY KEY,
+    name       VARCHAR(255),
+    product_id bigint NOT NULL,
+    CONSTRAINT product_id_fk FOREIGN KEY (product_id)
+        REFERENCES product_entity (description) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+INSERT INTO Persons (name, product_id)
+VALUES ('Bob', 1);
+
 DROP TABLE IF EXISTS Products;
 CREATE TABLE Products
 (
@@ -8,6 +22,7 @@ CREATE TABLE Products
     coast       int,
     company     VARCHAR(255)
 );
+
 INSERT INTO Products (description, coast, company)
 VALUES ('Молоко', 40, 'Звенигово'),
        ('Мясо', 200, 'Йола'),
