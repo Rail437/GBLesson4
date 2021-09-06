@@ -1,5 +1,7 @@
 package gb.spring.lesson4.service;
 
+import gb.spring.lesson4.model.MyString;
+import gb.spring.lesson4.model.PersonEntity;
 import gb.spring.lesson4.model.Product;
 import gb.spring.lesson4.model.ProductEntity;
 import lombok.NoArgsConstructor;
@@ -106,6 +108,21 @@ public class CrudService {
             shutdown();
         }
         return companies;
+    }
+
+    public List<PersonEntity> findByPersonName(MyString PersonName) {
+        String findPersonName = PersonName.getDescription();
+        List<PersonEntity> persons;
+        init();
+        try (Session session = factory.getCurrentSession()) {
+            session.beginTransaction();
+            persons = session.createQuery("from PersonEntity where name = "+"'" + findPersonName + "'").getResultList();
+            System.out.println("+++++++++: from ProductEntity where company = "+"'" + findPersonName + "'" + "\n");
+            session.getTransaction().commit();
+        }finally {
+            shutdown();
+        }
+        return persons;
     }
 
     public static List<ProductEntity> findByCoast(String coast) {

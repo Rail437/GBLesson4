@@ -1,11 +1,11 @@
 package gb.spring.lesson4.model;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "Products")
@@ -26,6 +26,10 @@ public class ProductEntity implements Serializable{
 
     @Column(name = "company")
     private String company;
+
+    @OneToMany(mappedBy = "products",fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<PersonEntity> persons;
 
     public ProductEntity(Long id, String description, Integer coast, String company) {
         this.id = id;
@@ -78,5 +82,16 @@ public class ProductEntity implements Serializable{
 
     public void setCompany(String company) {
         this.company = company;
+    }
+
+    @OneToMany(mappedBy = "products")
+    private Collection<PersonEntity> personEntity;
+
+    public Collection<PersonEntity> getPersonEntity() {
+        return personEntity;
+    }
+
+    public void setPersonEntity(Collection<PersonEntity> personEntity) {
+        this.personEntity = personEntity;
     }
 }

@@ -41,4 +41,9 @@ public class ProductController {
         return "myProducts";
     }
 
+    @PostMapping(params = "findPersonByName")
+    public String findPerson(@ModelAttribute MyString name, Model model) {
+        model.addAttribute("persons", crudService.findByPersonName(name));
+        return "myProducts";
+    }
 }
