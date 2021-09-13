@@ -1,34 +1,45 @@
 package gb.spring.lesson4.service;
 
-import gb.spring.lesson4.model.Product;
-import gb.spring.lesson4.repository.ProductRepository;
+import gb.spring.lesson4.model.MyString;
+import gb.spring.lesson4.model.ProductEntity;
+import gb.spring.lesson4.repository.PersonRepo;
+import gb.spring.lesson4.repository.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
+    private ProductRepo productRepo;
+    private PersonRepo personRepo;
 
-    private final ProductRepository productRepository;
-
-    public List<Product> findAll() {
-        return productRepository.findAll();
+    public ProductService(ProductRepo productRepo, PersonRepo personRepo) {
+        this.productRepo = productRepo;
+        this.personRepo = personRepo;
     }
 
-    public Product findById(Long id) {
-        return productRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+    public List<ProductEntity> filter(MyString product) {
+        List<ProductEntity> result = null;
+        if(product.getDescription()!=null && !product.getDescription().isEmpty()){
+           result = (List<ProductEntity>) productRepo.findByDescription(product.getDescription());
+        }
+        if (product.getCompany() != null && !product.getCompany().isEmpty()){
+            result = (List<ProductEntity>) productRepo.findByCompany(product.getCompany());
+        }
+        if (product.getCoast() != null && !product.getCoast().isEmpty()){
+            result = (List<ProductEntity>) productRepo.findByCoast(Integer.parseInt(product.getCoast()));
+        }
+        return result;
     }
 
-    public Product findByName(String name){
-        return productRepository.findByDescription(name).orElseThrow(() -> new NoSuchElementException());
+    public void save(ProductEntity product) {
+        productRepo.save(product);
     }
-    public void save(Product product) {
-        productRepository.save(product);
+
+    public List<ProductEntity> findAll() {
+        return productRepo.findAll();
     }
 }
