@@ -1,8 +1,4 @@
 package gb.spring.lesson4.model;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,17 +23,14 @@ public class ProductEntity implements Serializable{
     @Column(name = "company")
     private String company;
 
-    public ProductEntity(Long id, String description, Integer coast, String company) {
+
+    public ProductEntity(Long id, String description, Integer coast, String company, PersonEntity person) {
         this.id = id;
         this.description = description;
         this.coast = coast;
         this.company = company;
     }
-    public ProductEntity(String description, Integer coast, String company) {
-        this.description = description;
-        this.coast = coast;
-        this.company = company;
-    }
+
 
     public ProductEntity() {
     }
