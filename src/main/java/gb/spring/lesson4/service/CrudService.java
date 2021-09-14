@@ -1,19 +1,12 @@
 package gb.spring.lesson4.service;
 
 import gb.spring.lesson4.model.MyString;
-import gb.spring.lesson4.model.ProductEntity;
-import gb.spring.lesson4.repository.PersonRepo;
+import gb.spring.lesson4.model.ProductDto;
 import gb.spring.lesson4.repository.ProductRepo;
 import lombok.NoArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,30 +15,29 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class CrudService {
     @Autowired
-    private PersonRepo personRepo;
-    @Autowired
     private ProductRepo productRepo;
 
-    public CrudService(PersonRepo personRepo, ProductRepo productRepo) {
-        this.personRepo = personRepo;
+    public CrudService(ProductRepo productRepo) {
         this.productRepo = productRepo;
     }
 
 
-    public List<ProductEntity> findAll() {
-        return productRepo.findAll();
+    public List<ProductDto> findAll() {
+        return productRepo.findAll().stream()
+                .map(ProductDto::valueOf)
+                .collect(Collectors.toList());
     }
 
-    public void save(ProductEntity product) {
-        productRepo.save(product);
+    public void save(ProductDto productDto) {
+        productRepo.save(productDto.mapToProduct());
     }
 
-    public ProductEntity filterByDescription(MyString product) {
+    public ProductDto filterByDescription(MyString product) {
         return productRepo.findByDescription(product.getDescription());
     }
 
     public List<String> getCompanies() {
-       return productRepo.getCompany();
+        return productRepo.getCompany();
     }
 
     public void delete(String description) {
