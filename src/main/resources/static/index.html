@@ -12,7 +12,7 @@
     <script src="index.js"></script>
 </head>
 
-<body ng-app="modalFormApp">
+<body>
 <div class="container" ng-controller="indexController">
     <h1>Продукты</h1>
     <table class="table table-hover" cellpadding="0" cellspacing="0">
@@ -30,9 +30,9 @@
             <td>{{p.description}}</td>
             <td>{{p.company}}</td>
             <td>{{p.coast}}</td>
-            <td>
+            <!--<td>
                 <button class="btn btn-primary" ng-click="showForm()">Изменить</button>
-            </td>
+            </td>-->
             <td>
                 <button class="btn-danger" ng-click="removeProduct(p.id)">Удалить</button>
             </td>

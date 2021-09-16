@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/gb_homework?currentSchema=homework'
+    username: 'postgres'
+    password: 'qq112233'
+  jpa.show-sql: true
+
+  jpa.properties.hibernate.dialect: 'org.hibernate.dialect.PostgreSQLDialect'
+  jpa.hibernate.ddl-auto: update
+springfox:
+  documentation:
+    swagger:
+      v2:
+        enabled: true

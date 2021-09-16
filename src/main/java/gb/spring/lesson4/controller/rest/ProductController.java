@@ -1,24 +1,24 @@
 package gb.spring.lesson4.controller.rest;
 
-import gb.spring.lesson4.model.MyString;
 import gb.spring.lesson4.model.ProductDto;
 import gb.spring.lesson4.service.CrudService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/product")
+@RequestMapping("/api/v1/product")
+@Api
 public class ProductController {
 
     private final CrudService crudService;
 
     @GetMapping
+    @ApiOperation("Получение всех продуктов")
     public List<ProductDto> findAll() {
         //model.addAttribute("products", crudService.findAll());
         List<ProductDto> productDtos = crudService.findAll();
@@ -41,5 +41,4 @@ public class ProductController {
     public void delete(@PathVariable Long id){
         crudService.deleteById(id);
     }
-
 }
