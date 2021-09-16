@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3>Введи изменения!</h3>
+</div>
+<form name="form.userForm" ng-submit="submitForm()" novalidate>
+    <div class="modal-body">
+        <!--Description -->
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" name="description" class="form-control" ng-model="newProduct.description" required>
+            <p ng-show="form.userForm.name.$invalid && !form.userForm.name.$pristine" class="help-block">Поле не заполнено.</p>
+        </div>
+
+        <!-- Company -->
+        <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="company" class="form-control" ng-model="newProduct.company" ng-minlength="3"required>
+            <p ng-show="form.userForm.username.$error.minlength" class="help-block">Company invalid.</p>
+        </div>
+
+        <!-- Coast -->
+        <div class="form-group">
+            <label>Coast</label>
+            <input type="number" name="coast" class="form-control" ng-model="newProduct.coast" required>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" ng-disabled="form.userForm.$invalid">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

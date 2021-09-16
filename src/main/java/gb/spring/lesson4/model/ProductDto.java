@@ -1,11 +1,13 @@
 package gb.spring.lesson4.model;
 
 
+import io.swagger.annotations.ApiModel;
 import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel
 public class ProductDto {
     private Long id;
     private String description;
